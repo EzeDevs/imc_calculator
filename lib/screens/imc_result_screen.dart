@@ -114,28 +114,37 @@ class ImcResultScreen extends StatelessWidget {
 
   Color getColorByImc(double imcResult) {
     return switch (imcResult) {
-      < 18.5 => Colors.blue, //IMC Bajo
-      < 24.9 => Colors.green, //IMC Normal
-      < 29.99 => Colors.orange, //Sobrepeso
-      _ => Colors.red, //Obesidad
+      < 17.99 => Colors.blue, //IMC Bajo
+      < 24.99 => Colors.green, //IMC Normal
+      < 29.99 => Colors.orangeAccent, //Sobrepeso
+      < 34.99 => Colors.orange, //Obesidad grado 1
+      < 39.99 => Colors.deepOrange, //Obesidad grado 2
+      _ => Colors.red, //Obesidad grado 3
     };
   }
 
   String getTitleByImc(double imcResult) {
     return switch (imcResult) {
-      < 18.5 => 'IMC Bajo',
-      < 24.9 => 'IMC Normal',
+      < 17.99 => 'Peso Bajo',
+      < 24.99 => 'Peso Normal',
       < 29.99 => 'Sobrepeso',
-      _ => 'Obesidad',
+      < 34.99 => 'Obesidad grado 1',
+      < 39.99 => 'Obesidad grado 2',
+      _ => 'Obesidad grado 3',
     };
   }
 
   String getInfoByImc(double imcResult) {
     return switch (imcResult) {
-      < 18.5 => 'Tu peso está por debajo de lo recomendado.', //IMC Bajo
-      < 24.9 => 'Tu peso está en dentro del rango saludable.', //IMC Normal
+      < 17.99 => 'Tu peso está por debajo de lo recomendado.', //IMC Bajo
+      < 24.99 => 'Tu peso está en dentro del rango saludable.', //IMC Normal
       < 29.99 => 'Tienes sobrepeso, cuida tu alimentación.', //Sobrepeso
-      _ => 'Tienes obesidad, consulta con un especialista.', //Obesidad
+      < 34.99 =>
+        'Tienes obesidad grado 1, consulta con un especialista dentro de lo posible.', //Obesidad
+      < 39.99 =>
+        'Tienes obesidad grado 2, consulta con un especialista prontamente.', //Obesidad
+      _ =>
+        'Tienes obesidad grado 3, consulta con un especialista urgentemente.', //Obesidad
     };
   }
 }
